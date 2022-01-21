@@ -15,13 +15,6 @@
     var $window = $(window);
     var zero = 0;
 
-    // :: 1.0 PRELOADER ACTIVE CODE
-    $window.on('load', function () {
-        $('#preloader').fadeOut('slow', function () {
-            $(this).remove();
-        });
-    });
-
     // :: 2.0 NAVIGATION MENU ACTIVE CODE
     function navMenu() {
 
@@ -62,30 +55,12 @@
     }
     navMenu();
 
-    // :: 3.0 SCROLL TO TOP ACTIVE CODE
-    var offset = 300;
-    var duration = 500;
-
-    $window.on('scroll', function () {
-        if ($(this).scrollTop() > offset) {
-            $("#scrollUp").fadeIn(duration);
-        } else {
-            $("#scrollUp").fadeOut(duration);
-        }
-    });
-
-    $("#scrollUp").on('click', function () {
-        $('html, body').animate({
-            scrollTop: 0
-        }, duration);
-    });
-
     // :: 4.0 SCROLL LINK ACTIVE CODE
     var scrollLink = $('.scroll');
 
     // SCROLLSPY ACTIVE CODE
     $('body').scrollspy({
-        target: '#appo-header'
+        target: '#appolos-header'
     });
 
     // :: 5.0 SMOOTH SCROLLING ACTIVE CODE
@@ -102,28 +77,6 @@
     // :: 8.0 PREVENT DEFAULT ACTIVE CODE
     $("a[href='#']").on('click', function ($) {
         $.preventDefault();
-    });
-
-    // :: 14.0 FANCYBOX IMAGE GALLERY
-    $('[data-fancybox="images"]').fancybox({
-        afterLoad: function (instance, current) {
-            var pixelRatio = window.devicePixelRatio || 1;
-
-            if (pixelRatio > 1.5) {
-                current.width = current.width / pixelRatio;
-                current.height = current.height / pixelRatio;
-            }
-        }
-    });
-
-    $('[data-fancybox]').fancybox({
-        youtube: {
-            controls: 0,
-            showinfo: 0
-        },
-        vimeo: {
-            color: 'f00'
-        }
     });
 
     // :: 12.0 TEAM SLIDER ACTIVE CODE
@@ -151,30 +104,6 @@
         }
     });
 
-    // :: 12.0 TEAM SLIDER ACTIVE CODE
-    $('.client-slider.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 20,
-        nav: false,
-        dots: false,
-        smartSpeed: 2000,
-        autoplay: true,
-        autoplayTimeout: 2000,
-        responsive: {
-            0: {
-                items: 2
-            },
-            576: {
-                items: 3
-            },
-            768: {
-                items: 3
-            },
-            992: {
-                items: 4
-            }
-        }
-    });
 
     // :: 9.0 COUNTERUP ACTIVE CODE
     $('.counter').counterUp({
@@ -182,46 +111,5 @@
         time: 1000
     });
 
-    // :: 15.0 CONTACT FORM ACTIVE CODE
-    // Get the form.
-    var form = $('#contact-form');
-    // Get the messages div.
-    var formMessages = $('.form-message');
-    // Set up an event listener for the contact form.
-    $(form).submit(function (e) {
-        // Stop the browser from submitting the form.
-        e.preventDefault();
-        // Serialize the form data.
-        var formData = $(form).serialize();
-        // Submit the form using AJAX.
-        $.ajax({
-                type: 'POST',
-                url: $(form).attr('action'),
-                data: formData
-            })
-            .done(function (response) {
-                // Make sure that the formMessages div has the 'success' class.
-                $(formMessages).removeClass('error');
-                $(formMessages).addClass('success');
-
-                // Set the message text.
-                $(formMessages).text(response);
-
-                // Clear the form.
-                $('#contact-form input,#contact-form textarea').val('');
-            })
-            .fail(function (data) {
-                // Make sure that the formMessages div has the 'error' class.
-                $(formMessages).removeClass('success');
-                $(formMessages).addClass('error');
-
-                // Set the message text.
-                if (data.responseText !== '') {
-                    $(formMessages).text(data.responseText);
-                } else {
-                    $(formMessages).text('Oops! An error occured and your message could not be sent.');
-                }
-            });
-    });
-
+    
 }(jQuery));

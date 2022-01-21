@@ -989,9 +989,10 @@ a,
 }
 
 .welcome-area{
-    background-image: url(../img/bg/pharmacy-banner.jpg);
+    background-image: url(../img/bg/appolos-banner.jpg);
     background-position: center;
     background-size: cover;
+    height: 900px;
 }
 
 .welcome-form{
